@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+*************************************************
+	         AnyLogic Project File 
+*************************************************	         
+-->
+<AnyLogicWorkspace WorkspaceVersion="1.9" AnyLogicVersion="6.4.1.200910151246" AlpVersion="6.2.3">
+<Model>
+	<Id>1552428841132</Id>
+	<Name><![CDATA[homework11]]></Name>
+	<ExcludeFromBuild>false</ExcludeFromBuild>
+	<EngineVersion>6</EngineVersion>
+	<JavaPackageName><![CDATA[homework11]]></JavaPackageName>
+	<ActiveObjectClasses>
+		<!--   =========   Active Object Class   ========  -->
+		<ActiveObjectClass>
+			<Id>1552428841133</Id>
+			<Name><![CDATA[Main]]></Name>
+			<ExcludeFromBuild>false</ExcludeFromBuild>
+			<ClientAreaTopLeft><X>0</X><Y>0</Y></ClientAreaTopLeft>
+			<PresentationTopGroupPersistent>true</PresentationTopGroupPersistent>
+			<IconTopGroupPersistent>true</IconTopGroupPersistent>
+			<Generic>false</Generic>
+			<GenericParameters><![CDATA[T]]></GenericParameters>
+			<GenericParametersLabel><![CDATA[Generic parameters:]]></GenericParametersLabel>
+			<SamplesToKeep>100</SamplesToKeep>
+			<AgentProperties>
+	 			<SpaceType>CONTINUOUS</SpaceType>			
+				<EnvironmentDefinesInitialLocation>true</EnvironmentDefinesInitialLocation>
+
+
+			</AgentProperties>
+
+			<DatasetsCreationProperties>
+				<AutoCreate>true</AutoCreate>
+				<RecurrenceCode><![CDATA[1]]></RecurrenceCode>
+			</DatasetsCreationProperties>
+
+			<Variables>
+				<Variable Class="FlowAuxVariable">
+					<Id>1552432612604</Id>
+					<Name><![CDATA[StoI]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>290</X><Y>120</Y>
+					<Label><X>-30</X><Y>-20</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties External="false" Constant="false" Array="false" Flow="true">
+						<Formula><![CDATA[Susceptible/10000*Infective]]></Formula>
+					</Properties>
+				</Variable>
+				<Variable Class="FlowAuxVariable">
+					<Id>1552432763229</Id>
+					<Name><![CDATA[ItoR]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>470</X><Y>120</Y>
+					<Label><X>-20</X><Y>-20</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties External="false" Constant="false" Array="false" Flow="true">
+						<Formula><![CDATA[0.3*Infective]]></Formula>
+					</Properties>
+				</Variable>
+				<Variable Class="StockVariable">
+					<Id>1552432034898</Id>
+					<Name><![CDATA[Susceptible]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>180</X><Y>130</Y>
+					<Label><X>-30</X><Y>-20</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties Array="false">
+						<Expression><![CDATA[-StoI]]></Expression>
+						<InitialValue><![CDATA[9800]]></InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="StockVariable">
+					<Id>1552432694313</Id>
+					<Name><![CDATA[Infective]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>390</X><Y>120</Y>
+					<Label><X>-20</X><Y>-20</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties Array="false">
+						<Expression><![CDATA[StoI-ItoR]]></Expression>
+						<InitialValue><![CDATA[200]]></InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="StockVariable">
+					<Id>1552432734194</Id>
+					<Name><![CDATA[Removal]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>550</X><Y>130</Y>
+					<Label><X>-20</X><Y>-20</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties Array="false">
+						<Expression><![CDATA[ItoR]]></Expression>
+						<InitialValue><![CDATA[0]]></InitialValue>
+					</Properties>
+				</Variable>
+			</Variables>
+			<Dependences>
+				<PlainDependence SourceId="1552432034898" TargetId="1552432612604" Polarity="0">
+					<Height>10.0</Height>							
+					<Id>1552432692655</Id>
+					<Name><![CDATA[Susceptible -> StoI]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>0</X><Y>0</Y>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color/>
+				</PlainDependence>
+				<PlainDependence SourceId="1552432694313" TargetId="1552432612604" Polarity="0">
+					<Height>10.0</Height>							
+					<Id>1552432707526</Id>
+					<Name><![CDATA[Infective -> StoI]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>0</X><Y>0</Y>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color/>
+				</PlainDependence>
+				<PlainDependence SourceId="1552432694313" TargetId="1552432763229" Polarity="0">
+					<Height>10.0</Height>							
+					<Id>1552432802983</Id>
+					<Name><![CDATA[Infective -> ItoR]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>0</X><Y>0</Y>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color/>
+				</PlainDependence>
+				<FlowStockDependence SourceId="1552432612604" TargetId="1552432034898">
+					<Direct>false</Direct>
+					<Id>1552432806191</Id>
+					<Name><![CDATA[StoI -> Susceptible]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>0</X><Y>0</Y>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color/>
+				</FlowStockDependence>
+				<FlowStockDependence SourceId="1552432612604" TargetId="1552432694313">
+					<Direct>true</Direct>
+					<Id>1552432808013</Id>
+					<Name><![CDATA[StoI -> Infective]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>0</X><Y>0</Y>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color/>
+				</FlowStockDependence>
+				<FlowStockDependence SourceId="1552432763229" TargetId="1552432694313">
+					<Direct>false</Direct>
+					<Id>1552432810518</Id>
+					<Name><![CDATA[ItoR -> Infective]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>0</X><Y>0</Y>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color/>
+				</FlowStockDependence>
+				<FlowStockDependence SourceId="1552432763229" TargetId="1552432734194">
+					<Direct>true</Direct>
+					<Id>1552432812451</Id>
+					<Name><![CDATA[ItoR -> Removal]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>0</X><Y>0</Y>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Color/>
+				</FlowStockDependence>
+			</Dependences>
+		</ActiveObjectClass>
+	</ActiveObjectClasses>
+	<Experiments>	
+		<!--   =========   Simulation Experiment   ========  -->
+		<SimulationExperiment ActiveObjectClassId="1552428841133">
+			<Id>1552428841140</Id>
+			<Name><![CDATA[Simulation]]></Name>
+			<ExcludeFromBuild>false</ExcludeFromBuild>
+			<ClientAreaTopLeft><X>0</X><Y>0</Y></ClientAreaTopLeft>
+			<PresentationTopGroupPersistent>true</PresentationTopGroupPersistent>
+			<IconTopGroupPersistent>true</IconTopGroupPersistent>
+			<Frame>
+				<X>0</X>
+				<Y>0</Y>
+				<Width>800</Width>
+				<Height>600</Height>
+			</Frame>
+			<CommandLineArguments><![CDATA[]]></CommandLineArguments>
+			<MaximumMemory>64</MaximumMemory>
+			<RandomSeed>true</RandomSeed>
+			<SeedValue>1</SeedValue>
+			<RandomSelectionModeForSimultaneousEvents>false</RandomSelectionModeForSimultaneousEvents>
+			<VmArgs><![CDATA[]]></VmArgs>
+			<AbsoluteAccuracy>1.0E-5</AbsoluteAccuracy>
+			<RelativeAccuracy>1.0E-5</RelativeAccuracy>
+			<TimeAccuracy>1.0E-5</TimeAccuracy>
+			<FixedTimeStep>0.0010</FixedTimeStep>
+			<LoadRootFromSnapshot>false</LoadRootFromSnapshot>
+			<SnapshotFile></SnapshotFile>
+			<DiffEquationsNumericalMethod>EULER</DiffEquationsNumericalMethod>
+			<MixedEquationsNumericalMethod>RK45_NEWTON</MixedEquationsNumericalMethod>
+			<AlgebraicEquationsNumericalMethod>MODIFIED_NEWTON</AlgebraicEquationsNumericalMethod>
+			<Shapes>
+				<Text>
+					<Id>0</Id>
+					<Name><![CDATA[text]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>40</X><Y>30</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[homework11]]></Text>
+					<Font>
+						<Name>Serif</Name>
+						<Size>28</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>0</Id>
+					<Name><![CDATA[text1]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>40</X><Y>63</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<AsObject>true</AsObject>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Lock>false</Lock>
+					<ShowIn3D>false</ShowIn3D>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Experiment setup page]]></Text>
+					<Font>
+						<Name>Serif</Name>
+						<Size>16</Size>
+						<Style>2</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+			</Shapes>
+			<Controls>
+				<Control Type="Button">
+				 	<EmbeddedIcon>false</EmbeddedIcon>				
+					<Id>0</Id>
+					<Name><![CDATA[button]]></Name>
+					<ExcludeFromBuild>false</ExcludeFromBuild>
+					<X>40</X><Y>120</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<BasicProperties Width="330" Height="30" 
+				AsObject="true">
+                        <EmbeddedIcon>false</EmbeddedIcon>				
+						<FillColor/>
+						<TextColor/>
+						<ActionCode><![CDATA[if ( getState() == IDLE )
+	run();
+getEngine().getPresentation().setPresentable( getEngine().getRoot() );]]></ActionCode>
+					</BasicProperties>
+					<ExtendedProperties>
+						<Font Name="Dialog" Size="11" Style="0"/>
+						<LabelText><![CDATA[Run the model and switch to Main view]]></LabelText>
+						<LabelCode><![CDATA[getState() == IDLE ?
+	"Run the model and switch to Main view" :
+	"Switch to Main view"]]></LabelCode>
+					</ExtendedProperties>
+				</Control>
+			</Controls>
+			<Parameters>			
+				<Parameter>
+					<ParameterName><![CDATA[parameter]]></ParameterName>
+					<ParameterValue><![CDATA[]]></ParameterValue>
+				</Parameter>
+			</Parameters>			
+			<PresentationProperties 
+				EnableAdaptiveFrameManagement="true" 
+				EnableAntiAliasing="true"
+				EnablePanning="true"
+				EnableZoom="true">
+				<ExecutionMode><![CDATA[realTimeScaled]]></ExecutionMode>
+				<CpuRatio><![CDATA[ratio_1_2]]></CpuRatio>	        
+				<Title><![CDATA[homework11 : Simulation]]></Title>	
+				<FramesPerSecond><![CDATA[20.0]]></FramesPerSecond>
+				<RealTimeScale>SCALE_1</RealTimeScale>
+				<UIProperty Name="Experiment Progress" Value="false"/>
+				<UIProperty Name="Simulation Progress" Value="true"/>
+				<UIProperty Name="Statusbar Events Per Second" Value="false"/>
+				<UIProperty Name="Statusbar Frames Per Second" Value="false"/>
+				<UIProperty Name="Statusbar Memory" Value="true"/>
+				<UIProperty Name="Statusbar Model Date" Value="false"/>
+				<UIProperty Name="Statusbar Model Step" Value="false"/>
+				<UIProperty Name="Statusbar Model Time" Value="true"/>
+				<UIProperty Name="Statusbar Real Time Of Simulation" Value="true"/>
+				<UIProperty Name="Statusbar Status" Value="true"/>
+				<UIProperty Name="Toolbar Animation setup" Value="false"/>
+				<UIProperty Name="Toolbar Execution control" Value="true"/>
+				<UIProperty Name="Toolbar File" Value="false"/>
+				<UIProperty Name="Toolbar Model navigation" Value="true"/>
+				<UIProperty Name="Toolbar Time scale setup" Value="true"/>
+				<UIProperty Name="Toolbar View" Value="false"/>
+			</PresentationProperties>
+			<ModelTimeProperties 
+				UseCalendar="false">
+				<StopOption><![CDATA[Stop at specified time]]></StopOption>
+				<InitialDate><![CDATA[1552428841139]]></InitialDate>	
+				<InitialTime><![CDATA[0.0]]></InitialTime>	
+				<FinalDate><![CDATA[1552434841139]]></FinalDate>	
+				<FinalTime><![CDATA[100.0]]></FinalTime>	
+				<ModelTimeUnit><![CDATA[Minute]]></ModelTimeUnit>	
+			</ModelTimeProperties>
+		</SimulationExperiment>	
+	</Experiments>
+</Model>
+</AnyLogicWorkspace>

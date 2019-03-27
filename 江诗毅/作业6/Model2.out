@@ -1,0 +1,110 @@
+SIMAN Run Controller.
+
+105.62182 Hours>
+----------------------------------------------------------------------
+17114:CCREAT
+A runtime error was detected at time 174.25037 at the following block:
+
+ *    1 10$             CREATE,1,HoursToBaseTime(5),component:
+                            HoursToBaseTime(EXPO(0.5)):
+                            NEXT(11$);
+
+Maximum of 150 entities exceeded.
+Possible causes:
+- A logic problem in your model is creating too many entities or not
+  disposing them. The run controller may be helpful in finding the problem.
+- You are in demo mode and have exceeded the entity limit. The commercial
+  version is required to run large models.
+- You have set an entity limit on the DISCRETE element that is too small.
+  Remove the limit or set it to a larger number.
+- You have exceeded the standard array s 
+pace for models. Use the Array Sizes
+  page in the Run/Setup dialog to increase the RSET space allocated and
+  recheck your model.
+----------------------------------------------------------------------
+
+
+SIMAN Run Controller.
+
+174.25037 Hours>
+                                      ARENA Simulation Results
+                                            Windows 用户
+
+                                  Summary for Replication 1 of 1
+
+Project: Unnamed Project                                             Run execution date : 3/15/2019
+Analyst: Windows 用户                                                Model revision date: 3/15/2019
+
+Replication ended at time      : 174.25037 Hours 
+Base Time Units: Hours
+
+                                           TALLY VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Observations
+___________________________________________________________________________________________________
+
+cycle time of component two                 17.135     (Insuf)    1.0923     120.40        118    
+cycle time of component one                 12.942     (Insuf)    .54456     133.44         88    
+component.VATime                                --         --         --         --          0
+component.NVATime                               --         --         --         --          0
+component.WaitTime                              --         --         --         --          0
+component.TranTime                              --         --         --         --          0
+component.OtherTime                             --         --         --         --          0
+component.TotalTime                             --         --         --         --          0
+component two.VATime                        1.7305     (Insuf)    .84940     4.9933        118    
+component two.NVATime                       .00000     (Insuf)    .00000     .00000        118    
+component two.WaitTime                      15.405     (Insuf)    .00000     115.97        118    
+component two.TranTime                      .00000     (Insuf)    .00000     .00000        118    
+component two.OtherTime                     .00000     (Insuf)    .00000     .00000        118    
+component two.TotalTime                     17.135     (Insuf)    1.0923     120.40        118    
+component one.VATime                        1.3645     (Insuf)    .50471     4.9958         88    
+component one.NVATime                       .00000     (Insuf)    .00000     .00000         88    
+component one.WaitTime                      11.577     (Insuf)    .00000     132.04         88    
+component one.TranTime                      .00000     (Insuf)    .00000     .00000         88    
+component one.OtherTime                     .00000     (Insuf)    .00000     .00000         88    
+component one.TotalTime                     12.942     (Insuf)    .54456     133.44         88    
+A.Queue.WaitingTime                         3.2221     (Insuf)    .00000     132.04        167    
+B.Queue.WaitingTime                         59.074     (Insuf)    .00000     122.61         41    
+
+                                     DISCRETE-CHANGE VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Final Value
+___________________________________________________________________________________________________
+
+component.WIP                               .00000     (Insuf)    .00000     1.0000     .00000    
+component two.WIP                           37.060     (Insuf)    .00000     76.000     75.000    
+component one.WIP                           31.715     (Insuf)    .00000     73.000     73.000    
+Resource 3.NumberBusy                       .91492     (Insuf)    .00000     1.0000     1.0000    
+Resource 3.NumberScheduled                  1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Resource 3.Utilization                      .91492     (Insuf)    .00000     1.0000     1.0000    
+Resource 2.NumberBusy                       .97131     (Insuf)    .00000     1.0000     1.0000    
+Resource 2.NumberScheduled                  1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Resource 2.Utilization                      .97131     (Insuf)    .00000     1.0000     1.0000    
+Resource 1.NumberBusy                       .97131     (Insuf)    .00000     1.0000     1.0000    
+Resource 1.NumberScheduled                  1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Resource 1.Utilization                      .97131     (Insuf)    .00000     1.0000     1.0000    
+A.Queue.NumberInQueue                       3.2207     (Corr)     .00000     4.0000     4.0000    
+B.Queue.NumberInQueue                       63.669     (Insuf)    .00000     142.00     142.00    
+
+                                             OUTPUTS
+
+Identifier                                   Value
+_____________________________________________________________
+
+component.NumberIn                          354.00    
+component.NumberOut                         354.00    
+component two.NumberIn                      193.00    
+component two.NumberOut                     118.00    
+component one.NumberIn                      161.00    
+component one.NumberOut                     88.000    
+Resource 3.NumberSeized                     41.000    
+Resource 3.ScheduledUtilization             .91492    
+Resource 2.NumberSeized                     167.00    
+Resource 2.ScheduledUtilization             .97131    
+Resource 1.NumberSeized                     167.00    
+Resource 1.ScheduledUtilization             .97131    
+System.NumberOut                            206.00    
+
+
+Simulation run time: 14.97 minutes.
+Simulation run completed with 1 error(s) and 0 warning(s).

@@ -1,0 +1,26 @@
+[RESOURCES]
+AssembleBWorker
+CheckBWorker
+CheckAWorker
+AssembleAWorker
+[VARIABLES]
+Assemble A.NumberOut
+Decide 3.NumberOut False
+Check B.NumberIn
+Check success?.NumberOut True
+Assemble B.NumberIn
+Assemble A.NumberIn
+Check B.NumberOut
+Check success?.NumberOut False
+Check A.NumberOut
+A or B?.NumberOut True
+A or B?.NumberOut False
+Dispose 4.NumberOut
+Leave.NumberOut
+Check A.NumberIn
+CreateB.NumberOut
+BeginTiime
+Dispose 3.NumberOut
+CreateA.NumberOut
+Assemble B.NumberOut
+Decide 3.NumberOut True

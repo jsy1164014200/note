@@ -1,0 +1,63 @@
+SIMAN Run Controller.
+
+1.5002955 Hours>
+                                      ARENA Simulation Results
+                                            Windows 用户
+
+                                  Summary for Replication 1 of 1
+
+Project: Unnamed Project                                             Run execution date : 3/15/2019
+Analyst: Windows 用户                                                Model revision date: 3/15/2019
+
+Replication ended at time      : 32.0 Hours 
+Base Time Units: Hours
+
+                                           TALLY VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Observations
+___________________________________________________________________________________________________
+
+time of success component                   .04259     6.4370E-04 .01679     .08858        518    
+time of rework component                    .08166     (Insuf)    .04413     .14273         30    
+Component.VATime                            .04191     4.7003E-04 .01679     .06668        518    
+Component.NVATime                           .00000     .00000     .00000     .00000        518    
+Component.WaitTime                          6.8087E-04 (Corr)     .00000     .03761        518    
+Component.TranTime                          .00000     .00000     .00000     .00000        518    
+Component.OtherTime                         .00000     .00000     .00000     .00000        518    
+Component.TotalTime                         .04259     6.4370E-04 .01679     .08858        518    
+rework component.VATime                     .07886     (Insuf)    .04413     .13522         30    
+rework component.NVATime                    .00000     (Insuf)    .00000     .00000         30    
+rework component.WaitTime                   .00280     (Insuf)    .00000     .06015         30    
+rework component.TranTime                   .00000     (Insuf)    .00000     .00000         30    
+rework component.OtherTime                  .00000     (Insuf)    .00000     .00000         30    
+rework component.TotalTime                  .08166     (Insuf)    .04413     .14273         30    
+ProcessCenter.Queue.WaitingTime             7.5284E-04 6.3550E-04 .00000     .04608        580    
+
+                                     DISCRETE-CHANGE VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Final Value
+___________________________________________________________________________________________________
+
+Component.WIP                               .72545     .01200     .00000     2.0000     1.0000    
+rework component.WIP                        .04159     (Insuf)    .00000     1.0000     .00000    
+workResource.NumberBusy                     .75339     .01169     .00000     2.0000     1.0000    
+workResource.NumberScheduled                1.5000     (Insuf)    1.0000     2.0000     2.0000    
+workResource.Utilization                    .56245     (Corr)     .00000     1.0000     .50000    
+ProcessCenter.Queue.NumberInQueue           .01365     (Insuf)    .00000     1.0000     .00000    
+
+                                             OUTPUTS
+
+Identifier                                   Value
+_____________________________________________________________
+
+Component.NumberIn                          549.00    
+Component.NumberOut                         548.00    
+rework component.NumberIn                   30.000    
+rework component.NumberOut                  30.000    
+workResource.NumberSeized                   580.00    
+workResource.ScheduledUtilization           .50226    
+System.NumberOut                            548.00    
+
+
+Simulation run time: 0.03 minutes.
+Simulation run complete.

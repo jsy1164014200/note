@@ -1,0 +1,768 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <title>手写区块链</title>
+  <style type="text/css">
+    body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #222;
+  font-size: 100%;
+}
+
+.slide {
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 0; right: 0;
+  background-color: #f7f7f7;
+}
+
+.slide-content {
+  width: 800px;
+  height: 600px;
+  overflow: hidden;
+  margin: 80px auto 0 auto;
+  padding: 30px;
+
+  font-weight: 200;
+  font-size: 200%;
+  line-height: 1.375;
+}
+
+.controls {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
+
+.arrow {
+  width: 0; height: 0;
+  border: 30px solid #333;
+  float: left;
+  margin-right: 30px;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.prev {
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+
+  border-left-width: 0;
+  border-right-width: 50px;
+}
+
+.next {
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-right-color: transparent;
+
+  border-left-width: 50px;
+  border-right-width: 0;
+}
+
+.prev:hover {
+  border-right-color: #888;
+  cursor: pointer;
+}
+
+.next:hover {
+  border-left-color: #888;
+  cursor: pointer;
+}
+
+h1 {
+  font-size: 300%;
+  line-height: 1.2;
+  text-align: center;
+  margin: 170px 0 0;
+}
+
+h2 {
+  font-size: 100%;
+  line-height: 1.2;
+  margin: 5px 0;
+  text-align: center;
+  font-weight: 200;
+}
+
+h3 {
+  font-size: 140%;
+  line-height: 1.2;
+  border-bottom: 1px solid #aaa;
+  margin: 0;
+  padding-bottom: 15px;
+}
+
+ul {
+  padding: 20px 0 0 60px;
+  font-weight: 200;
+  line-height: 1.375;
+}
+
+.author h1 {
+  font-size: 170%;
+  font-weight: 200;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.author h3 {
+  font-weight: 100;
+  text-align: center;
+  font-size: 95%;
+  border: none;
+}
+
+a {
+  text-decoration: none;
+  color: #44a4dd;
+}
+
+a:hover {
+  color: #66b5ff;
+}
+
+pre {
+  font-size: 60%;
+  line-height: 1.3;
+}
+
+.progress {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  z-index: 1;
+}
+
+.progress-bar {
+  width: 0%;
+  height: 3px;
+  background-color: #b4b4b4;
+
+  -webkit-transition: width 0.05s ease-out;
+  -moz-transition: width 0.05s ease-out;
+  -o-transition: width 0.05s ease-out;
+  transition: width 0.05s ease-out;
+}
+
+.hidden {
+  display: none;
+}
+
+@media (max-width: 850px) {
+
+  body {
+    font-size: 70%;
+  }
+
+  .slide-content {
+    width: auto;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  h1 {
+    margin-top: 120px;
+  }
+
+  .prev, .prev:hover {
+    border-right-color: rgba(135, 135, 135, 0.5);
+  }
+
+  .next, .next:hover {
+    border-left-color: rgba(135, 135, 135, 0.5);
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 50%;
+    overflow: hidden;
+  }
+
+  .slide-content {
+    padding: 10px;
+    margin-top: 10px;
+    height: 340px;
+  }
+
+  h1 {
+    margin-top: 50px;
+  }
+
+  ul {
+    padding-left: 25px;
+  }
+}
+
+@media print {
+  * {
+    -webkit-print-color-adjust: exact;
+  }
+
+  @page {
+    size: letter;
+  }
+
+  .hidden {
+    display: inline;
+  }
+
+  html {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  body {
+    margin: 0 auto !important;
+    border: 0;
+    padding: 0;
+    float: none !important;
+    overflow: visible;
+    background: none !important;
+    font-size: 52%;
+  }
+
+  .progress, .controls {
+    display: none;
+  }
+
+  .slide {
+    position: static;
+  }
+
+  .slide-content {
+    border: 1px solid #222;
+    margin-top: 0;
+    margin-bottom: 40px;
+    height: 3.5in;
+    overflow: visible;
+  }
+
+  .slide:nth-child(even) {
+    /* 2 slides per page */
+    page-break-before: always;
+  }
+}
+
+/*
+
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #333;
+  background: #f8f8f8;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #998;
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-subst {
+  color: #333;
+  font-weight: bold;
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag .hljs-attr {
+  color: #008080;
+}
+
+.hljs-string,
+.hljs-doctag {
+  color: #d14;
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-selector-id {
+  color: #900;
+  font-weight: bold;
+}
+
+.hljs-subst {
+  font-weight: normal;
+}
+
+.hljs-type,
+.hljs-class .hljs-title {
+  color: #458;
+  font-weight: bold;
+}
+
+.hljs-tag,
+.hljs-name,
+.hljs-attribute {
+  color: #000080;
+  font-weight: normal;
+}
+
+.hljs-regexp,
+.hljs-link {
+  color: #009926;
+}
+
+.hljs-symbol,
+.hljs-bullet {
+  color: #990073;
+}
+
+.hljs-built_in,
+.hljs-builtin-name {
+  color: #0086b3;
+}
+
+.hljs-meta {
+  color: #999;
+  font-weight: bold;
+}
+
+.hljs-deletion {
+  background: #fdd;
+}
+
+.hljs-addition {
+  background: #dfd;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+
+  </style>
+</head>
+<body>
+    <div class="progress">
+    <div class="progress-bar"></div>
+  </div>
+
+  <div class="slide" id="slide-1">
+    <section class="slide-content"><h1 id="-">概念-实现一个玩具区块链</h1>
+<blockquote>
+<p>来自一个老外的博客(Typescript)，中本聪的白皮书</p>
+</blockquote>
+<p>区块链的基本概念非常简单：一个分布式数据库，它维护着不断增长的有序记录列表。</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-2">
+    <section class="slide-content"><p>一个区块链的基本功能：</p>
+<ul>
+<li>定义的块和区块链结构</li>
+</ul>
+<pre><code class="lang-go"><span class="hljs-keyword">type</span> Block <span class="hljs-keyword">struct</span> {
+    Index        <span class="hljs-keyword">int64</span>  <span class="hljs-string">`json:"index"`</span>  <span class="hljs-comment">// 高度</span>
+    Timestamp    <span class="hljs-keyword">int64</span>  <span class="hljs-string">`json:"timestamp"`</span>  <span class="hljs-comment">// 时间戳</span>
+    Data         <span class="hljs-keyword">string</span> <span class="hljs-string">`json:"data"`</span>    <span class="hljs-comment">// 一般记录交易信息</span>
+    PreviousHash <span class="hljs-keyword">string</span> <span class="hljs-string">`json:"previousHash"`</span>  <span class="hljs-comment">// 前一个块的hash</span>
+    Hash         <span class="hljs-keyword">string</span> <span class="hljs-string">`json:"hash"`</span>      <span class="hljs-comment">// 自己的hash</span>
+    <span class="hljs-comment">// 后面会用</span>
+    Difficulty   <span class="hljs-keyword">int64</span>  <span class="hljs-string">`json:"difficulty"`</span>
+    Nonce        <span class="hljs-keyword">int64</span>  <span class="hljs-string">`json:"nonce"`</span>
+}
+</code></pre>
+<blockquote>
+<p>块哈希是块的最重要属性之一。散列是在块的所有数据上计算的。这意味着如果块中的任何内容发生更改，则原始哈希不再有效。块哈希也可以被认为是块的唯一标识符。</p>
+</blockquote>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-3">
+    <section class="slide-content"><ul>
+<li>创世区块以及如何创建整个链条</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-4">
+    <section class="slide-content"><pre><code class="lang-go"><span class="hljs-comment">// 获取创世区块</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">getGenesisBlock</span><span class="hljs-params">()</span> <span class="hljs-title">Block</span></span> {
+    timeStamp := time.Now().UnixNano()
+    <span class="hljs-keyword">return</span> Block{
+        Index:        <span class="hljs-number">0</span>,
+        Timestamp:    timeStamp,
+        Data:         <span class="hljs-string">"GenesisBlock"</span>,
+        PreviousHash: <span class="hljs-string">""</span>,
+        Hash:         utils.CalculateHash(<span class="hljs-number">0</span>, timeStamp, <span class="hljs-string">"GenesisBlock"</span>, <span class="hljs-string">""</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>),
+        Difficulty:   <span class="hljs-number">1</span>,
+        Nonce:        <span class="hljs-number">1</span>,
+    }
+}
+
+<span class="hljs-keyword">var</span> BlockChain = []Block{getGenesisBlock()}
+</code></pre>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-5">
+    <section class="slide-content"><p>其他节点接收到区块时要验证区块：</p>
+<ul>
+<li>块的索引必须比前一个大一个数</li>
+<li>该<code>previousHash</code>块匹配<code>hash</code>以前块</li>
+<li>该<code>hash</code>块本身必须是有效的</li>
+</ul>
+<p>同样可以延伸扩展为验证整个区块链。</p>
+<p>这个地方我们定义最长的区块为有效的。</p>
+<blockquote>
+<p>后面引入pow后</p>
+</blockquote>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-6">
+    <section class="slide-content"><p>节点之间的通讯（websocket），httpApi控制节点的操作</p>
+<p><img src="https://lhartikk.github.io/assets/naivechain_architecture.png" alt="naivechain_architecture.png"></p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-7">
+    <section class="slide-content"><p><img src="https://lhartikk.github.io/assets/p2p_communication.png" alt="p2p通讯"></p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-8">
+    <section class="slide-content"><ul>
+<li>当节点生成新块时，它会将其广播到网络</li>
+<li>当节点连接到新对等体时，它会查询最新块</li>
+<li><p>当节点遇到索引大于当前已知块的块时，它会将块添加到其当前链或查询完整的区块链。</p>
+</li>
+<li><p>/blocks  列出所有块 </p>
+</li>
+<li>/mineBlock    添加块</li>
+<li>/peers     列出所有节点</li>
+<li>/addPeer    添加节点</li>
+</ul>
+<blockquote>
+<p>curl <a href="https://localhost:8888/blocks">https://localhost:8888/blocks</a></p>
+</blockquote>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-9">
+    <section class="slide-content"><h1 id="pow">pow</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-10">
+    <section class="slide-content"><p>我们将向块结构添加两个新属性：<code>difficulty</code>和<code>nonce</code>。要理解这些含义，我们必须首先介绍工作证明之谜。</p>
+<p>工作证明难题是找到一个块哈希，它具有前缀的特定数量的零。该<code>difficulty</code>属性定义<strong>块哈希必须具有多少前缀零</strong>，以使块有效。从散列的二进制格式检查前缀零。</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-11">
+    <section class="slide-content"><pre><code class="lang-go"><span class="hljs-comment">// 验证复杂度</span>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">HashMatchDifficulty</span><span class="hljs-params">(hash <span class="hljs-keyword">string</span>, difficulty <span class="hljs-keyword">int64</span>)</span> <span class="hljs-title">bool</span></span> {
+    <span class="hljs-keyword">return</span> strings.HasPrefix(hash, strings.Repeat(<span class="hljs-string">"0"</span>, <span class="hljs-keyword">int</span>(difficulty)))
+}
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">FindBlock</span><span class="hljs-params">(index <span class="hljs-keyword">int64</span>, timestamp <span class="hljs-keyword">int64</span>, data <span class="hljs-keyword">string</span>, previousHash <span class="hljs-keyword">string</span>, difficulty <span class="hljs-keyword">int64</span>)</span> <span class="hljs-title">Block</span></span> {
+    nonce := <span class="hljs-keyword">int64</span>(<span class="hljs-number">0</span>)
+    <span class="hljs-keyword">for</span> {
+        hash := utils.CalculateHash(index, timestamp, data, previousHash, difficulty, nonce)
+        <span class="hljs-keyword">if</span> utils.HashMatchDifficulty(hash, difficulty) {
+            <span class="hljs-keyword">return</span> Block{
+                Index:        index,
+                Timestamp:    timestamp,
+                Data:         data,
+                PreviousHash: previousHash,
+                Hash:         hash,
+                Difficulty:   difficulty,
+                Nonce:        nonce,
+            }
+        }
+        nonce++
+    } <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span>广播</span>
+}
+</code></pre>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-12">
+    <section class="slide-content"><p>调整困难度（bitcoin是大约10分钟一个区块）</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-13">
+    <section class="slide-content"><pre><code class="lang-go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">GetDifficulty</span><span class="hljs-params">(blockChain []Block)</span> <span class="hljs-title">int64</span></span> {
+    latestBlock := blockChain[<span class="hljs-built_in">len</span>(blockChain)<span class="hljs-number">-1</span>]
+    <span class="hljs-keyword">if</span> latestBlock.Difficulty%consts.BLOCK_GENERATION_INTERVAL == <span class="hljs-number">0</span> &amp;&amp;
+        latestBlock.Index != <span class="hljs-number">0</span> {
+        <span class="hljs-keyword">return</span> GetAdjustedDifficulty(latestBlock, blockChain)
+    }
+    <span class="hljs-keyword">return</span> latestBlock.Difficulty
+}
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">GetAdjustedDifficulty</span><span class="hljs-params">(latestBlock Block, blockChain []Block)</span> <span class="hljs-title">int64</span></span> {
+    preAdjustBlock := blockChain[<span class="hljs-built_in">len</span>(blockChain)-consts.DIFFICULTY_ADJUSTMENT_INTERVAL]
+    timeExpected := <span class="hljs-keyword">int64</span>(consts.BLOCK_GENERATION_INTERVAL * consts.DIFFICULTY_ADJUSTMENT_INTERVAL)
+    timeTaken := latestBlock.Timestamp - preAdjustBlock.Timestamp
+    <span class="hljs-keyword">if</span> timeTaken &lt; timeExpected/<span class="hljs-number">2</span> {
+        <span class="hljs-keyword">return</span> preAdjustBlock.Difficulty + <span class="hljs-number">1</span>
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> timeTaken &gt; timeExpected*<span class="hljs-number">2</span> {
+        <span class="hljs-keyword">return</span> preAdjustBlock.Difficulty - <span class="hljs-number">1</span>
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">return</span> preAdjustBlock.Difficulty
+    }
+}
+</code></pre>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-14">
+    <section class="slide-content"><p>通过最大的累计难度来确定有效链</p>
+<p><img src="https://lhartikk.github.io/assets/Cumulative_difficulties.png" alt="累积难度"></p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-15">
+    <section class="slide-content"><h1 id="-">交易</h1>
+<p>公钥私钥</p>
+<p>交易输入交易输出</p>
+</section>
+  </div>
+  <div class="slide hidden  " id="slide-16">
+    <section class="slide-content"><pre><code class="lang-go"><span class="hljs-comment">// 把区块链 改成加密货币</span>
+<span class="hljs-comment">// 交易包括两个部分 1. 证明币是自己的     2.把钱发给谁</span>
+<span class="hljs-keyword">type</span> TxOut <span class="hljs-keyword">struct</span> {
+    Address <span class="hljs-keyword">string</span> <span class="hljs-string">`json:"address"`</span>
+    Amount  <span class="hljs-keyword">int64</span>  <span class="hljs-string">`json:"amount"`</span>
+}
+<span class="hljs-keyword">type</span> TxIn <span class="hljs-keyword">struct</span> {
+    TxOutId    <span class="hljs-keyword">string</span> <span class="hljs-string">`json:"txOutId"`</span>  <span class="hljs-comment">// 使用私钥对 transaction.id签名</span>
+    TxOutIndex <span class="hljs-keyword">int64</span>  <span class="hljs-string">`json:"txOutIndex"`</span>
+    Signature  <span class="hljs-keyword">string</span> <span class="hljs-string">`json:"signature"`</span>
+}
+<span class="hljs-keyword">type</span> UnspentTxOut <span class="hljs-keyword">struct</span> {
+    TxOutId    <span class="hljs-keyword">string</span>
+    TxOutIndex <span class="hljs-keyword">int64</span>
+    Address    <span class="hljs-keyword">string</span>
+    Amount     <span class="hljs-keyword">int64</span>
+}
+<span class="hljs-comment">// TxIn Unlock 然后 TxOut relock</span>
+<span class="hljs-keyword">type</span> Transaction <span class="hljs-keyword">struct</span> {
+    Id     <span class="hljs-keyword">string</span>  <span class="hljs-string">`json:"id"`</span>  <span class="hljs-comment">// id 所有的 内容hash</span>
+    TxIns  []TxIn  <span class="hljs-string">`json:"txIns"`</span>
+    TxOuts []TxOut <span class="hljs-string">`json:"txOuts"`</span>
+}
+</code></pre>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-17">
+    <section class="slide-content"><p>验证交易：</p>
+<ol>
+<li>tranid</li>
+<li>公钥（address）解密 对比 id</li>
+</ol>
+<pre><code class="lang-go"><span class="hljs-comment">// coinbase transaction 是 coin的来源，也是对矿工的奖励</span>
+<span class="hljs-keyword">var</span> unspentTxOuts []UnspentTxOut
+<span class="hljs-comment">// 钱包 ： 生成 私钥， 公钥</span>
+<span class="hljs-comment">// 一定要注意交易的 方式 ，钱包钱非整数，会先 全部变成 txIn 然后统一变成txOut</span>
+<span class="hljs-comment">// 用于包含 未被证实的交易</span>
+<span class="hljs-keyword">var</span> transactionPool []Transaction
+<span class="hljs-comment">// 交易先 存在 这个里面，然后 由每个节点 认证交易，将交易包含到 UNspentTxOut里面。</span>
+</code></pre>
+<blockquote>
+<p>注意交易形式</p>
+</blockquote>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-18">
+    <section class="slide-content"><h2 id="-">钱包</h2>
+<ol>
+<li>私钥</li>
+<li>公钥</li>
+<li>Unspend</li>
+</ol>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-19">
+    <section class="slide-content"><h2 id="-pool">交易pool</h2>
+<p>矿工证实交易pool中的交易有效，然后包含在data中。</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-20">
+    <section class="slide-content"></section>
+  </div>
+  <div class="slide hidden author-slide" id="slide-21">
+    <section class="slide-content"><div class="author">
+  <h1 class="name">gng</h1>
+    <h3 class="email">
+      <a href="mailto:gng@bingyan.net">gng@bingyan.net</a>
+    </h3>
+</div>
+</section>
+  </div>
+
+  <div class="controls">
+    <div class="arrow prev"></div>
+    <div class="arrow next"></div>
+  </div>
+
+
+  <script type="text/javascript">
+    /**
+ * Returns the current page number of the presentation.
+ */
+function currentPosition() {
+  return parseInt(document.querySelector('.slide:not(.hidden)').id.slice(6));
+}
+
+
+/**
+ * Navigates forward n pages
+ * If n is negative, we will navigate in reverse
+ */
+function navigate(n) {
+  var position = currentPosition();
+  var numSlides = document.getElementsByClassName('slide').length;
+
+  /* Positions are 1-indexed, so we need to add and subtract 1 */
+  var nextPosition = (position - 1 + n) % numSlides + 1;
+
+  /* Normalize nextPosition in-case of a negative modulo result */
+  nextPosition = (nextPosition - 1 + numSlides) % numSlides + 1;
+
+  document.getElementById('slide-' + position).classList.add('hidden');
+  document.getElementById('slide-' + nextPosition).classList.remove('hidden');
+
+  updateProgress();
+  updateURL();
+  updateTabIndex();
+}
+
+
+/**
+ * Updates the current URL to include a hashtag of the current page number.
+ */
+function updateURL() {
+  try {
+    window.history.replaceState({} , null, '#' + currentPosition());
+  } catch (e) {
+    window.location.hash = currentPosition();
+  }
+}
+
+
+/**
+ * Sets the progress indicator.
+ */
+function updateProgress() {
+  var progressBar = document.querySelector('.progress-bar');
+
+  if (progressBar !== null) {
+    var numSlides = document.getElementsByClassName('slide').length;
+    var position = currentPosition() - 1;
+    var percent = (numSlides === 1) ? 100 : 100 * position / (numSlides - 1);
+    progressBar.style.width = percent.toString() + '%';
+  }
+}
+
+
+/**
+ * Removes tabindex property from all links on the current slide, sets
+ * tabindex = -1 for all links on other slides. Prevents slides from appearing
+ * out of control.
+ */
+function updateTabIndex() {
+  var allLinks = document.querySelectorAll('.slide a');
+  var position = currentPosition();
+  var currentPageLinks = document.getElementById('slide-' + position).querySelectorAll('a');
+  var i;
+
+  for (i = 0; i < allLinks.length; i++) {
+    allLinks[i].setAttribute('tabindex', -1);
+  }
+
+  for (i = 0; i < currentPageLinks.length; i++) {
+    currentPageLinks[i].removeAttribute('tabindex');
+  }
+}
+
+/**
+ * Determines whether or not we are currently in full screen mode
+ */
+function isFullScreen() {
+  return document.fullscreenElement ||
+         document.mozFullScreenElement ||
+         document.webkitFullscreenElement ||
+         document.msFullscreenElement;
+}
+
+/**
+ * Toggle fullScreen mode on document element.
+ * Works on chrome (>= 15), firefox (>= 9), ie (>= 11), opera(>= 12.1), safari (>= 5).
+ */
+function toggleFullScreen() {
+  /* Convenient renames */
+  var docElem = document.documentElement;
+  var doc = document;
+
+  docElem.requestFullscreen =
+      docElem.requestFullscreen ||
+      docElem.msRequestFullscreen ||
+      docElem.mozRequestFullScreen ||
+      docElem.webkitRequestFullscreen.bind(docElem, Element.ALLOW_KEYBOARD_INPUT);
+
+  doc.exitFullscreen =
+      doc.exitFullscreen ||
+      doc.msExitFullscreen ||
+      doc.mozCancelFullScreen ||
+      doc.webkitExitFullscreen;
+
+  isFullScreen() ? doc.exitFullscreen() : docElem.requestFullscreen();
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Update the tabindex to prevent weird slide transitioning
+  updateTabIndex();
+
+  // If the location hash specifies a page number, go to it.
+  var page = window.location.hash.slice(1);
+  if (page) {
+    navigate(parseInt(page) - 1);
+  }
+
+  document.onkeydown = function (e) {
+    var kc = e.keyCode;
+
+    // left, down, H, J, backspace, PgUp - BACK
+    // up, right, K, L, space, PgDn - FORWARD
+    // enter - FULLSCREEN
+    if (kc === 37 || kc === 40 || kc === 8 || kc === 72 || kc === 74 || kc === 33) {
+      navigate(-1);
+    } else if (kc === 38 || kc === 39 || kc === 32 || kc === 75 || kc === 76 || kc === 34) {
+      navigate(1);
+    } else if (kc === 13) {
+      toggleFullScreen();
+    }
+  };
+
+  if (document.querySelector('.next') && document.querySelector('.prev')) {
+    document.querySelector('.next').onclick = function (e) {
+      e.preventDefault();
+      navigate(1);
+    };
+
+    document.querySelector('.prev').onclick = function (e) {
+      e.preventDefault();
+      navigate(-1);
+    };
+  }
+});
+
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+[RESOURCES]
+Resource 2
+Resource 1
+[VARIABLES]
+Nurse.NumberOut
+Doctor.NumberOut
+Doctor.NumberIn
+Create 1.NumberOut
+Nurse.NumberIn
+Dispose 1.NumberOut

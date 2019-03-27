@@ -1,0 +1,19 @@
+[RESOURCES]
+Resource 3
+Resource 2
+Resource 1
+[VARIABLES]
+Decide 2.NumberOut False
+Decide 1.NumberOut False
+Dispose 2.NumberOut
+Check.NumberOut
+Create 1.NumberOut
+Rework.NumberOut
+Dispose 1.NumberOut
+Rework.NumberIn
+Check.NumberIn
+Dispose 3.NumberOut
+Work center.NumberOut
+Work center.NumberIn
+Decide 2.NumberOut True
+Decide 1.NumberOut True

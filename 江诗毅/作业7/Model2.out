@@ -1,0 +1,120 @@
+SIMAN Run Controller.
+
+5.2981066 Hours>SIMAN Run Controller.
+
+13.882477 Hours>SIMAN Run Controller.
+
+15.50071 Hours>SIMAN Run Controller.
+
+16.707235 Hours>SIMAN Run Controller.
+
+17.596543 Hours>SIMAN Run Controller.
+
+19.498957 Hours>SIMAN Run Controller.
+
+21.022549 Hours>SIMAN Run Controller.
+
+21.401894 Hours>SIMAN Run Controller.
+
+21.725013 Hours>SIMAN Run Controller.
+
+22.07942 Hours>SIMAN Run Controller.
+
+22.45776 Hours>SIMAN Run Controller.
+
+23.43356 Hours>SIMAN Run Controller.
+
+23.898784 Hours>SIMAN Run Controller.
+
+24.779208 Hours>SIMAN Run Controller.
+
+25.23356 Hours>SIMAN Run Controller.
+
+25.583361 Hours>SIMAN Run Controller.
+
+28.867139 Hours>SIMAN Run Controller.
+
+29.174639 Hours>SIMAN Run Controller.
+
+29.488806 Hours>SIMAN Run Controller.
+
+32.625371 Hours>
+32.625371 Hours>
+32.628704 Hours>
+32.628704 Hours>
+32.628704 Hours>
+32.629726 Hours>
+32.629726 Hours>
+                                      ARENA Simulation Results
+                                            Windows 用户
+
+                                  Summary for Replication 1 of 1
+
+Project: Unnamed Project                                             Run execution date : 3/14/2019
+Analyst: Windows 用户                                                Model revision date: 3/14/2019
+
+Replication ended at time      : 33.333333 Hours 
+Base Time Units: Hours
+
+                                           TALLY VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Observations
+___________________________________________________________________________________________________
+
+cycle time of success                       .08547     .00974     .05199     .20751       6267    
+cycle time of rework                        .16489     .01809     .08340     .34074       1362    
+Entity 1.VATime                             .00882     1.7400E-04 .00168     .06473       7779    
+Entity 1.NVATime                            .00000     .00000     .00000     .00000       7779    
+Entity 1.WaitTime                           .03868     (Corr)     .00000     .24198       7779    
+Entity 1.TranTime                           .05308     1.1209E-04 .04998     .06668       7779    
+Entity 1.OtherTime                          .00000     .00000     .00000     .00000       7779    
+Entity 1.TotalTime                          .10058     (Corr)     .05199     .34074       7779    
+Rework.Queue.WaitingTime                    .03743     .01132     .00000     .22045       1514    
+Leave 4.Queue.WaitingTime                   3.7477E-05 7.3891E-06 .00000     8.1530E-04   1363    
+Check.Queue.WaitingTime                     2.8894E-04 1.1479E-04 .00000     .02201       1513    
+Leave 3.Queue.WaitingTime                   3.9158E-04 1.5205E-05 .00000     8.1636E-04   1515    
+Leave 2.Queue.WaitingTime                   3.9630E-04 5.5942E-06 .00000     8.1666E-04   6270    
+Work center.Queue.WaitingTime               .03049     (Corr)     .00000     .15232       7786    
+Leave 1.Queue.WaitingTime                   4.9259E-04 1.1675E-05 .00000     .00270       7811    
+
+                                     DISCRETE-CHANGE VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Final Value
+___________________________________________________________________________________________________
+
+Entity 1.WIP                                23.544     (Corr)     .00000     55.000     32.000    
+Resource 3.NumberBusy                       .27638     .01451     .00000     1.0000     .00000    
+Resource 3.NumberScheduled                  1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Resource 3.Utilization                      .27638     .01451     .00000     1.0000     .00000    
+Resource 2.NumberBusy                       .84574     .03291     .00000     1.0000     1.0000    
+Resource 2.NumberScheduled                  1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Resource 2.Utilization                      .84574     .03291     .00000     1.0000     1.0000    
+Resource 1.NumberBusy                       .93733     .01874     .00000     1.0000     1.0000    
+Resource 1.NumberScheduled                  1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Resource 1.Utilization                      .93733     .01874     .00000     1.0000     1.0000    
+Rework.Queue.NumberInQueue                  1.6999     .53438     .00000     11.000     .00000    
+Leave 4.Queue.NumberInQueue                 .00153     (Insuf)    .00000     1.0000     .00000    
+Check.Queue.NumberInQueue                   .01311     (Insuf)    .00000     2.0000     .00000    
+Leave 3.Queue.NumberInQueue                 .01780     .00102     .00000     1.0000     .00000    
+Leave 2.Queue.NumberInQueue                 .07454     .00189     .00000     1.0000     .00000    
+Work center.Queue.NumberInQueue             7.1445     (Corr)     .00000     35.000     19.000    
+Leave 1.Queue.NumberInQueue                 .11543     .00384     .00000     4.0000     .00000    
+
+                                             OUTPUTS
+
+Identifier                                   Value
+_____________________________________________________________
+
+Entity 1.NumberIn                           7811.0    
+Entity 1.NumberOut                          7779.0    
+Resource 3.NumberSeized                     1513.0    
+Resource 3.ScheduledUtilization             .27638    
+Resource 2.NumberSeized                     1514.0    
+Resource 2.ScheduledUtilization             .84574    
+Resource 1.NumberSeized                     7786.0    
+Resource 1.ScheduledUtilization             .93733    
+System.NumberOut                            7779.0    
+
+
+Simulation run time: 0.93 minutes.
+Simulation run complete.

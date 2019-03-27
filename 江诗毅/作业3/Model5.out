@@ -1,0 +1,57 @@
+
+                                      ARENA Simulation Results
+                                            Windows 用户
+
+                                  Summary for Replication 1 of 1
+
+Project: Unnamed Project                                             Run execution date : 3/15/2019
+Analyst: Windows 用户                                                Model revision date: 3/15/2019
+
+Replication ended at time      : 6.6666667 Hours 
+Base Time Units: Hours
+
+                                           TALLY VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Observations
+___________________________________________________________________________________________________
+
+Entity 1.VATime                             .04209     (Insuf)    .03420     .05114         60    
+Entity 1.NVATime                            .00000     (Insuf)    .00000     .00000         60    
+Entity 1.WaitTime                           1.5118     (Insuf)    .00000     2.4712         60    
+Entity 1.TranTime                           .00000     (Insuf)    .00000     .00000         60    
+Entity 1.OtherTime                          .00000     (Insuf)    .00000     .00000         60    
+Entity 1.TotalTime                          1.5539     (Insuf)    .03928     2.5054         60    
+Work center.Queue.WaitingTime               1.5118     (Insuf)    .00000     2.4712         60    
+
+                                     DISCRETE-CHANGE VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Final Value
+___________________________________________________________________________________________________
+
+Entity 1.WIP                                23.666     (Insuf)    .00000     49.000     49.000    
+work resource.NumberBusy                    .37879     (Insuf)    .00000     1.0000     .00000    
+work resource.NumberScheduled               1.0000     (Insuf)    1.0000     1.0000     1.0000    
+work resource.Utilization                   .37879     (Insuf)    .00000     1.0000     .00000    
+Work center.Queue.NumberInQueue             23.287     (Insuf)    .00000     49.000     49.000    
+
+                                             COUNTERS
+
+Identifier                                    Count   Limit
+_____________________________________________________________
+
+failCount                                        15  Infinite
+
+                                             OUTPUTS
+
+Identifier                                   Value
+_____________________________________________________________
+
+Entity 1.NumberIn                           109.00    
+Entity 1.NumberOut                          60.000    
+work resource.NumberSeized                  60.000    
+work resource.ScheduledUtilization          .37879    
+System.NumberOut                            60.000    
+
+
+Simulation run time: 0.05 minutes.
+Simulation run complete.

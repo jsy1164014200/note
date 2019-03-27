@@ -1,0 +1,17 @@
+[RESOURCES]
+Resource 3
+Resource 2
+Resource 1
+[VARIABLES]
+B.NumberOut
+Decide 4.NumberOut False
+Decide 3.NumberOut False
+Decide 1.NumberOut False
+B.NumberIn
+A.NumberOut
+Dispose 2.NumberOut
+A.NumberIn
+Create components.NumberOut
+Decide 4.NumberOut True
+Decide 3.NumberOut True
+Decide 1.NumberOut True

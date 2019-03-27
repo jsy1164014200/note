@@ -1,0 +1,52 @@
+SIMAN Run Controller.
+
+3.078449 Hours>
+                                      ARENA Simulation Results
+                                            Windows 用户
+
+                                  Summary for Replication 1 of 1
+
+Project: Unnamed Project                                             Run execution date : 3/15/2019
+Analyst: Windows 用户                                                Model revision date: 3/15/2019
+
+Replication ended at time      : 22.0 Hours 
+Base Time Units: Hours
+
+                                           TALLY VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Observations
+___________________________________________________________________________________________________
+
+custom.VATime                               .01574     .00185     .00000     .09007       3158    
+custom.NVATime                              .00000     .00000     .00000     .00000       3158    
+custom.WaitTime                             .06711     (Corr)     .00000     .43431       3158    
+custom.TranTime                             .00000     .00000     .00000     .00000       3158    
+custom.OtherTime                            .00000     .00000     .00000     .00000       3158    
+custom.TotalTime                            .08285     .00716     .00000     .45613       3158    
+Service.Queue.WaitingTime                   .17456     .02094     .00000     .43431       1214    
+
+                                     DISCRETE-CHANGE VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Final Value
+___________________________________________________________________________________________________
+
+custom.WIP                                  11.892     4.5396     .00000     25.000     .00000    
+worker.NumberBusy                           2.2597     (Insuf)    .00000     4.0000     .00000    
+worker.NumberScheduled                      3.0909     (Insuf)    2.0000     4.0000     2.0000    
+worker.Utilization                          .65588     (Insuf)    .00000     1.0000     .00000    
+Service.Queue.NumberInQueue                 9.6327     3.8568     .00000     20.000     .00000    
+
+                                             OUTPUTS
+
+Identifier                                   Value
+_____________________________________________________________
+
+custom.NumberIn                             3158.0    
+custom.NumberOut                            3158.0    
+worker.NumberSeized                         1214.0    
+worker.ScheduledUtilization                 .73108    
+System.NumberOut                            3158.0    
+
+
+Simulation run time: 0.23 minutes.
+Simulation run complete.

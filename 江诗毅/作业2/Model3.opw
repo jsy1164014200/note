@@ -1,0 +1,11 @@
+[RESOURCES]
+workResource
+[VARIABLES]
+IsRework.NumberOut False
+IsRework.NumberOut True
+SuccessComponent.NumberOut
+Decide is not rework?.NumberOut False
+Decide is not rework?.NumberOut True
+ProcessCenter.NumberOut
+ProcessCenter.NumberIn
+Create components.NumberOut

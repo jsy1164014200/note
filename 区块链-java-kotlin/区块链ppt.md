@@ -1,0 +1,252 @@
+title: 手写区块链
+author:
+  name: gng
+  email: gng@bingyan.net
+output: basic.html
+controls: true
+
+--
+
+# 概念-实现一个玩具区块链
+
+> 来自一个老外的博客(Typescript)，中本聪的白皮书
+
+区块链的基本概念非常简单：一个分布式数据库，它维护着不断增长的有序记录列表。
+
+--
+
+一个区块链的基本功能：
+
+- 定义的块和区块链结构
+
+```go
+type Block struct {
+	Index        int64  `json:"index"`  // 高度
+	Timestamp    int64  `json:"timestamp"`  // 时间戳
+	Data         string `json:"data"`	// 一般记录交易信息
+	PreviousHash string `json:"previousHash"`  // 前一个块的hash
+	Hash         string `json:"hash"`  	// 自己的hash
+	// 后面会用
+	Difficulty   int64  `json:"difficulty"`
+	Nonce        int64  `json:"nonce"`
+}
+```
+
+> 块哈希是块的最重要属性之一。散列是在块的所有数据上计算的。这意味着如果块中的任何内容发生更改，则原始哈希不再有效。块哈希也可以被认为是块的唯一标识符。
+
+--
+
+- 创世区块以及如何创建整个链条
+
+--
+
+```go
+// 获取创世区块
+func getGenesisBlock() Block {
+	timeStamp := time.Now().UnixNano()
+	return Block{
+		Index:        0,
+		Timestamp:    timeStamp,
+		Data:         "GenesisBlock",
+		PreviousHash: "",
+		Hash:         utils.CalculateHash(0, timeStamp, "GenesisBlock", "", 1, 1),
+		Difficulty:   1,
+		Nonce:        1,
+	}
+}
+
+var BlockChain = []Block{getGenesisBlock()}
+```
+
+--
+
+其他节点接收到区块时要验证区块：
+
+- 块的索引必须比前一个大一个数
+- 该`previousHash`块匹配`hash`以前块
+- 该`hash`块本身必须是有效的
+
+同样可以延伸扩展为验证整个区块链。
+
+这个地方我们定义最长的区块为有效的。
+
+> 后面引入pow后
+
+--
+
+节点之间的通讯（websocket），httpApi控制节点的操作
+
+![naivechain_architecture.png](https://lhartikk.github.io/assets/naivechain_architecture.png)
+
+--
+
+![p2p通讯](https://lhartikk.github.io/assets/p2p_communication.png)
+
+--
+
+- 当节点生成新块时，它会将其广播到网络
+- 当节点连接到新对等体时，它会查询最新块
+- 当节点遇到索引大于当前已知块的块时，它会将块添加到其当前链或查询完整的区块链。
+
+1. /blocks  列出所有块 
+2. /mineBlock    添加块
+3. /peers     列出所有节点
+4. /addPeer    添加节点
+
+> curl https://localhost:8888/blocks
+
+--
+
+# pow
+
+--
+
+我们将向块结构添加两个新属性：`difficulty`和`nonce`。要理解这些含义，我们必须首先介绍工作证明之谜。
+
+工作证明难题是找到一个块哈希，它具有前缀的特定数量的零。该`difficulty`属性定义**块哈希必须具有多少前缀零**，以使块有效。从散列的二进制格式检查前缀零。
+
+--
+
+```go
+// 验证复杂度
+func HashMatchDifficulty(hash string, difficulty int64) bool {
+	return strings.HasPrefix(hash, strings.Repeat("0", int(difficulty)))
+}
+func FindBlock(index int64, timestamp int64, data string, previousHash string, difficulty int64) Block {
+	nonce := int64(0)
+	for {
+		hash := utils.CalculateHash(index, timestamp, data, previousHash, difficulty, nonce)
+		if utils.HashMatchDifficulty(hash, difficulty) {
+			return Block{
+				Index:        index,
+				Timestamp:    timestamp,
+				Data:         data,
+				PreviousHash: previousHash,
+				Hash:         hash,
+				Difficulty:   difficulty,
+				Nonce:        nonce,
+			}
+		}
+		nonce++
+	} // TODO:广播
+}
+```
+
+--
+
+调整困难度（bitcoin是大约10分钟一个区块）
+
+--
+
+```go
+func GetDifficulty(blockChain []Block) int64 {
+	latestBlock := blockChain[len(blockChain)-1]
+	if latestBlock.Difficulty%consts.BLOCK_GENERATION_INTERVAL == 0 &&
+		latestBlock.Index != 0 {
+		return GetAdjustedDifficulty(latestBlock, blockChain)
+	}
+	return latestBlock.Difficulty
+}
+func GetAdjustedDifficulty(latestBlock Block, blockChain []Block) int64 {
+	preAdjustBlock := blockChain[len(blockChain)-consts.DIFFICULTY_ADJUSTMENT_INTERVAL]
+	timeExpected := int64(consts.BLOCK_GENERATION_INTERVAL * consts.DIFFICULTY_ADJUSTMENT_INTERVAL)
+	timeTaken := latestBlock.Timestamp - preAdjustBlock.Timestamp
+	if timeTaken < timeExpected/2 {
+		return preAdjustBlock.Difficulty + 1
+	} else if timeTaken > timeExpected*2 {
+		return preAdjustBlock.Difficulty - 1
+	} else {
+		return preAdjustBlock.Difficulty
+	}
+}
+```
+
+--
+
+通过最大的累计难度来确定有效链
+
+![累积难度](https://lhartikk.github.io/assets/Cumulative_difficulties.png)
+
+--
+
+# 交易
+
+公钥私钥
+
+交易输入交易输出
+
+-- 
+
+```go
+// 把区块链 改成加密货币
+// 交易包括两个部分 1. 证明币是自己的 	2.把钱发给谁
+type TxOut struct {
+	Address string `json:"address"`
+	Amount  int64  `json:"amount"`
+}
+type TxIn struct {
+	TxOutId    string `json:"txOutId"`  // 使用私钥对 transaction.id签名
+	TxOutIndex int64  `json:"txOutIndex"`
+	Signature  string `json:"signature"`
+}
+type UnspentTxOut struct {
+	TxOutId    string
+	TxOutIndex int64
+	Address    string
+	Amount     int64
+}
+// TxIn Unlock 然后 TxOut relock
+type Transaction struct {
+	Id     string  `json:"id"`  // id 所有的 内容hash
+	TxIns  []TxIn  `json:"txIns"`
+	TxOuts []TxOut `json:"txOuts"`
+}
+```
+
+--
+
+验证交易：
+
+1. tranid
+2. 公钥（address）解密 对比 id
+
+```go
+// coinbase transaction 是 coin的来源，也是对矿工的奖励
+var unspentTxOuts []UnspentTxOut
+// 钱包 ： 生成 私钥， 公钥
+// 一定要注意交易的 方式 ，钱包钱非整数，会先 全部变成 txIn 然后统一变成txOut
+// 用于包含 未被证实的交易
+var transactionPool []Transaction
+// 交易先 存在 这个里面，然后 由每个节点 认证交易，将交易包含到 UNspentTxOut里面。
+```
+
+> 注意交易形式   
+
+--
+
+## 钱包
+
+1. 私钥
+2. 公钥
+3. Unspend
+
+--
+
+## 交易pool
+
+矿工证实交易pool中的交易有效，然后包含在data中。
+
+--
+
+
+
+
+
+
+
+
+
+
+
+
+

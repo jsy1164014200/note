@@ -1,0 +1,16 @@
+[RESOURCES]
+ReworkResource
+ProcessCenterResource
+[VARIABLES]
+Rework Leave.NumberOut
+isReSuccess.NumberOut True
+Components.NumberOut
+isReSuccess.NumberOut False
+Rework.NumberOut
+Rework.NumberIn
+ProcessCenter.NumberOut
+ProcessCenter.NumberIn
+IsSuccess.NumberOut True
+Faiil.NumberOut
+SuccessLeave.NumberOut
+IsSuccess.NumberOut False

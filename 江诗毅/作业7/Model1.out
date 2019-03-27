@@ -1,0 +1,125 @@
+
+----------------------------------------------------------------------
+17192:IDIST 
+Entity: 21
+A warning was generated at time 1.1874347 at the following block:
+ *   76 362$            FREE:Cart;
+
+Station pair Enter 5.Station - Enter 4.Station not in distance set Cart.Distance.
+Using distance of 0.
+Possible causes: 
+- No distance defined between this pair of stations.
+- Entity station attribute (M) incorrectly assigned before trying to
+  allocate/request transporter.
+----------------------------------------------------------------------
+
+
+
+1.1874347 Hours>
+                                      ARENA Simulation Results
+                                            Windows 用户
+
+                                  Summary for Replication 1 of 1
+
+Project: Unnamed Project                                             Run execution date : 3/13/2019
+Analyst: Windows 用户                                                Model revision date: 3/13/2019
+
+Replication ended at time      : 1.1874347 Hours 
+Base Time Units: Hours
+
+                                           TALLY VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Observations
+___________________________________________________________________________________________________
+
+cycle time of failed                            --         --         --         --          0
+cycle time of rework                            --         --         --         --          0
+cycle time of A                             .23817     (Insuf)    .13985     .38548          7    
+cycle time of B                                 --         --         --         --          0
+componentB.VATime                               --         --         --         --          0
+componentB.NVATime                              --         --         --         --          0
+componentB.WaitTime                             --         --         --         --          0
+componentB.TranTime                             --         --         --         --          0
+componentB.OtherTime                            --         --         --         --          0
+componentB.TotalTime                            --         --         --         --          0
+componentA.VATime                           .12834     (Insuf)    .10188     .17100          7    
+componentA.NVATime                          .00000     (Insuf)    .00000     .00000          7    
+componentA.WaitTime                         .08760     (Insuf)    .00000     .26138          7    
+componentA.TranTime                         .02222     (Insuf)    .02222     .02222          7    
+componentA.OtherTime                        .00000     (Insuf)    .00000     .00000          7    
+componentA.TotalTime                        .23817     (Insuf)    .13985     .38548          7    
+yyyy.VATime                                     --         --         --         --          0
+yyyy.NVATime                                    --         --         --         --          0
+yyyy.WaitTime                                   --         --         --         --          0
+yyyy.TranTime                                   --         --         --         --          0
+yyyy.OtherTime                                  --         --         --         --          0
+yyyy.TotalTime                                  --         --         --         --          0
+xxxx.VATime                                     --         --         --         --          0
+xxxx.NVATime                                    --         --         --         --          0
+xxxx.WaitTime                                   --         --         --         --          0
+xxxx.TranTime                                   --         --         --         --          0
+xxxx.OtherTime                                  --         --         --         --          0
+xxxx.TotalTime                                  --         --         --         --          0
+Assemble B.Queue.WaitingTime                .23679     (Insuf)    .00000     .60357         11    
+Assemble A.Queue.WaitingTime                .05508     (Insuf)    .00000     .20009          8    
+Leave Assemble B.Queue.WaitingTime          .00841     (Insuf)    .00000     .03920         10    
+Check B.Queue.WaitingTime                   .00000     (Insuf)    .00000     .00000          1    
+Check A.Queue.WaitingTime                   .00000     (Insuf)    .00000     .00000          8    
+Leave 3.Queue.WaitingTime                   .00467     (Insuf)    .00467     .00467          1    
+Leave Assemble A.Queue.WaitingTime          .00490     (Insuf)    .00000     .03907          8    
+
+                                     DISCRETE-CHANGE VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Final Value
+___________________________________________________________________________________________________
+
+componentB.WIP                              8.1981     (Insuf)    .00000     12.000     12.000    
+componentA.WIP                              1.5950     (Insuf)    .00000     4.0000     1.0000    
+yyyy.WIP                                    .00000     (Insuf)    .00000     4.0000     .00000    
+xxxx.WIP                                    .00000     (Insuf)    .00000     1.0000     .00000    
+AssembleBWorker.NumberBusy                  .84871     (Insuf)    .00000     1.0000     1.0000    
+AssembleBWorker.NumberScheduled             1.0000     (Insuf)    1.0000     1.0000     1.0000    
+AssembleBWorker.Utilization                 .84871     (Insuf)    .00000     1.0000     1.0000    
+CheckBWorker.NumberBusy                     .89127     (Insuf)    .00000     1.0000     1.0000    
+CheckBWorker.NumberScheduled                1.0000     (Insuf)    1.0000     1.0000     1.0000    
+CheckBWorker.Utilization                    .89127     (Insuf)    .00000     1.0000     1.0000    
+CheckAWorker.NumberBusy                     .29858     (Insuf)    .00000     1.0000     .00000    
+CheckAWorker.NumberScheduled                1.0000     (Insuf)    1.0000     1.0000     1.0000    
+CheckAWorker.Utilization                    .29858     (Insuf)    .00000     1.0000     .00000    
+AssembleAWorker.NumberBusy                  .57026     (Insuf)    .00000     1.0000     .00000    
+AssembleAWorker.NumberScheduled             1.0000     (Insuf)    1.0000     1.0000     1.0000    
+AssembleAWorker.Utilization                 .57026     (Insuf)    .00000     1.0000     .00000    
+Assemble B.Queue.NumberInQueue              2.3569     (Insuf)    .00000     6.0000     1.0000    
+Assemble A.Queue.NumberInQueue              .37111     (Insuf)    .00000     3.0000     .00000    
+Leave Assemble B.Queue.NumberInQueue        .07081     (Insuf)    .00000     1.0000     .00000    
+Check B.Queue.NumberInQueue                 3.6936     (Insuf)    .00000     8.0000     8.0000    
+Check A.Queue.NumberInQueue                 .00000     (Insuf)    .00000     .00000     .00000    
+Leave 3.Queue.NumberInQueue                 .00393     (Insuf)    .00000     1.0000     .00000    
+Leave Assemble A.Queue.NumberInQueue        .03303     (Insuf)    .00000     1.0000     .00000    
+
+                                             OUTPUTS
+
+Identifier                                   Value
+_____________________________________________________________
+
+componentB.NumberIn                         12.000    
+componentB.NumberOut                        .00000    
+componentA.NumberIn                         8.0000    
+componentA.NumberOut                        7.0000    
+yyyy.NumberIn                               12.000    
+yyyy.NumberOut                              12.000    
+xxxx.NumberIn                               8.0000    
+xxxx.NumberOut                              8.0000    
+AssembleBWorker.NumberSeized                11.000    
+AssembleBWorker.ScheduledUtilization        .84871    
+CheckBWorker.NumberSeized                   1.0000    
+CheckBWorker.ScheduledUtilization           .89127    
+CheckAWorker.NumberSeized                   8.0000    
+CheckAWorker.ScheduledUtilization           .29858    
+AssembleAWorker.NumberSeized                8.0000    
+AssembleAWorker.ScheduledUtilization        .57026    
+System.NumberOut                            7.0000    
+
+
+Simulation run time: 0.27 minutes.
+Simulation run completed with 0 error(s) and 1 warning(s).

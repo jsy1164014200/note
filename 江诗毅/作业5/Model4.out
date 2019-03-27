@@ -1,0 +1,93 @@
+
+                                      ARENA Simulation Results
+                                            Windows 用户
+
+                                  Summary for Replication 1 of 1
+
+Project: Unnamed Project                                             Run execution date : 3/15/2019
+Analyst: Windows 用户                                                Model revision date: 3/15/2019
+
+Replication ended at time      : 80.0 Hours 
+Base Time Units: Hours
+
+                                           TALLY VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Observations
+___________________________________________________________________________________________________
+
+Entity 1.VATime                             .51325     (Insuf)    .42938     .58202         11    
+Entity 1.NVATime                            .00000     (Insuf)    .00000     .00000         11    
+Entity 1.WaitTime                           13.087     (Insuf)    .00000     23.709         11    
+Entity 1.TranTime                           .00000     (Insuf)    .00000     .00000         11    
+Entity 1.OtherTime                          .00000     (Insuf)    .00000     .00000         11    
+Entity 1.TotalTime                          13.601     (Insuf)    .43854     24.291         11    
+Entity 2.VATime                             .74821     (Insuf)    .66813     .83289         26    
+Entity 2.NVATime                            .00000     (Insuf)    .00000     .00000         26    
+Entity 2.WaitTime                           13.242     (Insuf)    1.4868     23.355         26    
+Entity 2.TranTime                           .00000     (Insuf)    .00000     .00000         26    
+Entity 2.OtherTime                          .00000     (Insuf)    .00000     .00000         26    
+Entity 2.TotalTime                          13.990     (Insuf)    2.3197     24.086         26    
+Entity 3.VATime                             .75322     (Insuf)    .66965     .82806         53    
+Entity 3.NVATime                            .00000     (Insuf)    .00000     .00000         53    
+Entity 3.WaitTime                           12.223     (Insuf)    .30392     23.317         53    
+Entity 3.TranTime                           .00000     (Insuf)    .00000     .00000         53    
+Entity 3.OtherTime                          .00000     (Insuf)    .00000     .00000         53    
+Entity 3.TotalTime                          12.976     (Insuf)    1.1073     24.107         53    
+Entity 4.VATime                             .75030     (Insuf)    .67454     .82969         31    
+Entity 4.NVATime                            .00000     (Insuf)    .00000     .00000         31    
+Entity 4.WaitTime                           14.247     (Insuf)    2.7426     23.048         31    
+Entity 4.TranTime                           .00000     (Insuf)    .00000     .00000         31    
+Entity 4.OtherTime                          .00000     (Insuf)    .00000     .00000         31    
+Entity 4.TotalTime                          14.998     (Insuf)    3.5088     23.745         31    
+Entity 5.VATime                             .74348     (Insuf)    .66690     .83035         38    
+Entity 5.NVATime                            .00000     (Insuf)    .00000     .00000         38    
+Entity 5.WaitTime                           11.640     (Insuf)    .65185     23.341         38    
+Entity 5.TranTime                           .00000     (Insuf)    .00000     .00000         38    
+Entity 5.OtherTime                          .00000     (Insuf)    .00000     .00000         38    
+Entity 5.TotalTime                          12.384     (Insuf)    1.4777     24.053         38    
+Nurse.Queue.WaitingTime                     .20454     (Insuf)    .00000     1.4087        215    
+Doctor.Queue.WaitingTime                    12.559     (Insuf)    .00000     23.709        160    
+
+                                     DISCRETE-CHANGE VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Final Value
+___________________________________________________________________________________________________
+
+Entity 1.WIP                                2.9534     (Insuf)    .00000     8.0000     7.0000    
+Entity 2.WIP                                6.3976     (Insuf)    .00000     14.000     13.000    
+Entity 3.WIP                                12.318     (Insuf)    .00000     23.000     22.000    
+Entity 4.WIP                                8.3121     (Insuf)    .00000     16.000     16.000    
+Entity 5.WIP                                8.1608     (Insuf)    .00000     16.000     16.000    
+Resource 2.NumberBusy                       .99856     (Insuf)    .00000     1.0000     1.0000    
+Resource 2.NumberScheduled                  1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Resource 2.Utilization                      .99856     (Insuf)    .00000     1.0000     1.0000    
+Resource 1.NumberBusy                       .67127     (Insuf)    .00000     1.0000     1.0000    
+Resource 1.NumberScheduled                  1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Resource 1.Utilization                      .67127     (Insuf)    .00000     1.0000     1.0000    
+Nurse.Queue.NumberInQueue                   .54970     (Insuf)    .00000     6.0000     .00000    
+Doctor.Queue.NumberInQueue                  35.922     (Corr)     .00000     72.000     72.000    
+
+                                             OUTPUTS
+
+Identifier                                   Value
+_____________________________________________________________
+
+Entity 1.NumberIn                           233.00    
+Entity 1.NumberOut                          226.00    
+Entity 2.NumberIn                           39.000    
+Entity 2.NumberOut                          26.000    
+Entity 3.NumberIn                           75.000    
+Entity 3.NumberOut                          53.000    
+Entity 4.NumberIn                           47.000    
+Entity 4.NumberOut                          31.000    
+Entity 5.NumberIn                           54.000    
+Entity 5.NumberOut                          38.000    
+Resource 2.NumberSeized                     160.00    
+Resource 2.ScheduledUtilization             .99856    
+Resource 1.NumberSeized                     215.00    
+Resource 1.ScheduledUtilization             .67127    
+System.NumberOut                            159.00    
+
+
+Simulation run time: 0.18 minutes.
+Simulation run complete.

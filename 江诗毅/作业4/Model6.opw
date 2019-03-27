@@ -1,0 +1,10 @@
+[RESOURCES]
+worker
+[VARIABLES]
+Service.NumberOut
+Decide 3.NumberOut False
+Dispose 2.NumberOut
+Create customs.NumberOut
+Leave.NumberOut
+Service.NumberIn
+Decide 3.NumberOut True

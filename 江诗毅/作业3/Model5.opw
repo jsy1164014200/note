@@ -1,0 +1,7 @@
+[RESOURCES]
+work resource
+[VARIABLES]
+Leave.NumberOut
+Work center.NumberOut
+Work center.NumberIn
+Create components.NumberOut
